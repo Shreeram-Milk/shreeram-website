@@ -1,47 +1,121 @@
+import Image from 'next/image'
+import Link from 'next/link'
 import { BusinessJsonLd } from '@/components/BusinessJsonLd'
-import { Card, PageHeader, Section } from '@/components/ui'
+import { PageHeader } from '@/components/ui'
+import { Icon } from '@/components/Icons'
 import { getContact } from '@/lib/content-api'
 import { pageMetadata } from '@/lib/seo'
-
 export const revalidate = 300
 export const metadata = pageMetadata({
   title: 'Contact us',
-  description: 'Call, WhatsApp or email ShreeRam Milks. We are happy to help with orders, deliveries and your account.',
+  description:
+    'Call, WhatsApp or email ShreeRam Milks. We are happy to help with orders, deliveries and your account.',
   path: '/contact',
 })
-
-const digitsOf = (value: string) => value.replace(/\D/g, '')
 const withCountryCode = (value: string) => {
-  const digits = digitsOf(value)
+  const digits = value.replace(/\D/g, '')
   return digits.length === 10 ? `91${digits}` : digits
 }
-
-/** Contact details are the ones set in the admin's App Settings; only what is filled in is shown. */
 export default async function ContactPage() {
   const contact = await getContact()
   const rows = contact
     ? [
-        contact.supportPhone && { label: 'Phone', value: contact.supportPhone, href: `tel:+${withCountryCode(contact.supportPhone)}` },
-        contact.supportWhatsApp && { label: 'WhatsApp', value: contact.supportWhatsApp, href: `https://wa.me/${withCountryCode(contact.supportWhatsApp)}` },
-        contact.supportEmail && { label: 'Email', value: contact.supportEmail, href: `mailto:${contact.supportEmail}` },
-      ].filter((row): row is { label: string; value: string; href: string } => Boolean(row))
+        contact.supportPhone && {
+          label: 'Give us a call',
+          value: contact.supportPhone,
+          href: `tel:+${withCountryCode(contact.supportPhone)}`,
+        },
+        contact.supportWhatsApp && {
+          label: 'A message on WhatsApp',
+          value: contact.supportWhatsApp,
+          href: `https://wa.me/${withCountryCode(contact.supportWhatsApp)}`,
+        },
+        contact.supportEmail && {
+          label: 'Drop us a little note',
+          value: contact.supportEmail,
+          href: `mailto:${contact.supportEmail}`,
+        },
+      ].filter((row): row is { label: string; value: string; href: string } =>
+        Boolean(row),
+      )
     : []
   return (
-    <Section narrow>
-      <BusinessJsonLd contact={contact} />
-      <PageHeader title="Contact us" intro="Questions about an order, a delivery or your account? Reach us here." />
-      {rows.length > 0 ? (
-        <Card>
-          <ul className="contact-list">
-            {rows.map(row => (
-              <li key={row.label}><span className="contact-label">{row.label}</span><a className="contact-value" href={row.href}>{row.value}</a></li>
-            ))}
-            {contact?.supportHoursEn ? <li><span className="contact-label">Hours</span><span className="contact-value">{contact.supportHoursEn}</span></li> : null}
-          </ul>
-        </Card>
-      ) : (
-        <p className="notice" role="status">Our contact details are not available right now. Please try again in a little while.</p>
-      )}
-    </Section>
+    <section className="section">
+      <div className="wrap">
+        <BusinessJsonLd contact={contact} />
+        <div className="contact-hero">
+          <PageHeader
+            title="Good conversations start here."
+            intro="A question, a little feedback or help with your daily dairy. We’re happy to hear from you."
+          />
+        </div>
+        <div className="contact-layout">
+          <div>
+            {rows.length ? (
+              <ul className="contact-list">
+                {rows.map((row) => (
+                  <li key={row.label} className="reveal">
+                    <span className="contact-label">{row.label}</span>
+                    <a
+                      className="contact-value"
+                      href={row.href}
+                      target={
+                        row.href.startsWith('https') ? '_blank' : undefined
+                      }
+                      rel={
+                        row.href.startsWith('https')
+                          ? 'noopener noreferrer'
+                          : undefined
+                      }
+                    >
+                      {row.value} <span aria-hidden="true">↗</span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <div className="empty-state" role="status">
+                <Icon name="bell" size={30} />
+                <h2>Our details are unavailable right now.</h2>
+                <p>
+                  Please try again in a little while. You can also find support
+                  through the ShreeRam Milks app.
+                </p>
+                <Link href="/download" className="text-link">
+                  Discover the app ↗
+                </Link>
+              </div>
+            )}
+            {contact?.supportHoursEn ? (
+              <div className="contact-hours">
+                <Icon name="calendar" />
+                <div>
+                  <span className="contact-label">Here when you need us</span>
+                  <p>{contact.supportHoursEn}</p>
+                </div>
+              </div>
+            ) : null}
+          </div>
+          <aside className="contact-side reveal">
+            <div className="photo">
+              <Image
+                src="/images/farm.jpg"
+                alt="A green dairy farm"
+                fill
+                sizes="(min-width: 700px) 40vw, 90vw"
+              />
+            </div>
+            <h2>From our family to yours.</h2>
+            <p>
+              Good service is part of good dairy. Every question matters, just
+              like every delivery.
+            </p>
+            <Link className="text-link" href="/help">
+              Visit the help centre <span aria-hidden="true">↗</span>
+            </Link>
+          </aside>
+        </div>
+      </div>
+    </section>
   )
 }

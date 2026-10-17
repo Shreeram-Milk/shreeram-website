@@ -68,8 +68,9 @@ export async function getHome(): Promise<HomeContent> {
   }
 }
 
-export async function getProducts(): Promise<ProductCard[]> {
-  const payload = await getJson('/public/products?pageSize=8')
+export async function getProducts(pageSize = 8): Promise<ProductCard[]> {
+  const limit = Math.min(100, Math.max(1, Math.floor(pageSize)))
+  const payload = await getJson(`/public/products?pageSize=${limit}`)
   if (!isRecord(payload) || !Array.isArray(payload.products)) return []
   return payload.products.filter(isRecord).map(item => ({
     id: text(item.id), name: text(item.name), imageUrl: typeof item.imageUrl === 'string' ? item.imageUrl : null, priceFromPaise: typeof item.priceFromPaise === 'number' ? item.priceFromPaise : 0,

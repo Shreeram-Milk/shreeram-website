@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { Card, Section } from '@/components/ui'
 import { pageMetadata } from '@/lib/seo'
 import { DeletionFlow } from './DeletionFlow'
@@ -15,6 +16,8 @@ export const metadata = pageMetadata({
 export default function AccountDeletionPage() {
   return (
     <Section narrow>
+      <div className="page-breadcrumb"><Link href="/">Home</Link><span>/</span><span>Account & privacy</span></div>
+      <span className="eyebrow">YOUR DATA. YOUR CHOICE.</span>
       <h1>Delete your account</h1>
       <p className="lede">You can erase your ShreeRam Milks account here, without opening the app.</p>
 

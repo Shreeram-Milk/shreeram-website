@@ -1,41 +1,91 @@
-import Image from 'next/image'
 import { PlayStoreButton } from '@/components/PlayStoreButton'
-import { Card, Section } from '@/components/ui'
+import { PhonePreview } from '@/components/PhonePreview'
+import { Icon, type IconName } from '@/components/Icons'
 import { getPlayStoreUrl } from '@/lib/content-api'
 import { pageMetadata } from '@/lib/seo'
-
 export const revalidate = 300
 export const metadata = pageMetadata({
   title: 'Download the app',
-  description: 'Get the ShreeRam Milks app on Google Play to order fresh milk, set up daily delivery and manage your subscription.',
+  description:
+    'Get the ShreeRam Milks app on Google Play to order fresh milk, set up daily delivery and manage your subscription.',
   path: '/download',
 })
-
-const FEATURES = [
-  { icon: '🛒', title: 'Order in a minute', text: 'Pick your milk and dairy products and choose a delivery slot.' },
-  { icon: '📅', title: 'Subscribe once', text: 'Get delivery every day. Pause or skip when you travel.' },
-  { icon: '📊', title: 'Track everything', text: 'See your upcoming deliveries, payments and balance in one place.' },
+const FEATURES: { icon: IconName; title: string; text: string }[] = [
+  {
+    icon: 'cart',
+    title: 'Your favourites, a tap away.',
+    text: 'Pick your milk and dairy products, choose a delivery slot and order securely.',
+  },
+  {
+    icon: 'calendar',
+    title: 'A routine that fits your life.',
+    text: 'Set up daily deliveries. Change quantities, pause or skip when you travel.',
+  },
+  {
+    icon: 'chart',
+    title: 'Everything, in one place.',
+    text: 'See your upcoming deliveries, payments and balance without the extra phone calls.',
+  },
 ]
-
 export default async function DownloadPage() {
   const playStoreUrl = await getPlayStoreUrl()
   return (
     <>
-      <Section>
-        <div className="split">
-          <div>
-            <span className="eyebrow"><span className="live-dot" aria-hidden="true" />Android app</span>
-            <h1>Get the ShreeRam Milks <span className="accent">app</span></h1>
-            <p className="lede">Order fresh milk and manage your deliveries from your phone, in Gujarati or English.</p>
-            <div className="hero-actions"><PlayStoreButton url={playStoreUrl} /></div>
+      <section className="section download-hero">
+        <div className="wrap split">
+          <div className="reveal">
+            <span className="eyebrow">FRESHNESS. ON YOUR PHONE.</span>
+            <h1>
+              Your mornings.
+              <br />
+              <span className="muted-heading">Beautifully</span>
+              <br />
+              sorted.
+            </h1>
+            <p className="lede">
+              Meet the ShreeRam Milks app. Fresh dairy, flexible daily plans and
+              a little less on your to-do list.
+            </p>
+            <div className="hero-actions">
+              <PlayStoreButton url={playStoreUrl} />
+            </div>
+            <p className="download-note">
+              For Android · Ordering and delivery availability are shown in the
+              app.
+            </p>
+            <div className="download-language">
+              <span>English</span>
+              <span lang="gu">ગુજરાતી</span>
+            </div>
           </div>
-          <div className="photo reveal"><Image src="/images/glass.jpg" alt="A glass of fresh milk" fill sizes="(min-width: 860px) 50vw, 100vw" priority /></div>
+          <PhonePreview />
         </div>
-      </Section>
-      <Section tone="fill" labelledBy="app-features">
-        <div className="section-head reveal"><span className="eyebrow">Inside the app</span><h2 id="app-features">What you can do in the app</h2></div>
-        <div className="grid grid-3">{FEATURES.map(item => <Card key={item.title} className="reveal"><div className="icon-dot" aria-hidden="true">{item.icon}</div><h3>{item.title}</h3><p className="card-text">{item.text}</p></Card>)}</div>
-      </Section>
+      </section>
+      <section className="section">
+        <div className="wrap">
+          <div className="section-head reveal">
+            <span className="eyebrow">A SIMPLER EVERYDAY</span>
+            <h2>
+              More goodness.
+              <br />
+              Fewer things to remember.
+            </h2>
+          </div>
+          <ul className="features features-3">
+            {FEATURES.map((item, index) => (
+              <li
+                key={item.title}
+                className="feature reveal"
+                data-delay={index * 100}
+              >
+                <Icon name={item.icon} size={29} />
+                <h3>{item.title}</h3>
+                <p>{item.text}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
     </>
   )
 }

@@ -1,47 +1,74 @@
+import Image from 'next/image'
 import Link from 'next/link'
 import { MAIN_NAV, POLICY_NAV, SITE_NAME } from '@/lib/site'
-
-function BrandLogo() {
-  return (
-    <>
-      <span className="brand-mark" aria-hidden="true">🥛</span>
-      <span className="brand-name">ShreeRam <span>Milks</span></span>
-    </>
-  )
-}
-
-export function SiteHeader() {
-  return (
-    <header className="site-header">
-      <div className="wrap header-row">
-        <Link href="/" className="brand" aria-label={`${SITE_NAME} home`}><BrandLogo /></Link>
-        <nav aria-label="Main" className="main-nav">
-          {MAIN_NAV.map(link => <Link key={link.href} href={link.href} className={link.href === '/download' ? 'nav-cta' : undefined}>{link.label}</Link>)}
-        </nav>
-      </div>
-    </header>
-  )
-}
+export { SiteHeader } from './SiteHeader'
 
 export function SiteFooter() {
   return (
     <footer className="site-footer">
+      <div className="wrap footer-top">
+        <span className="eyebrow">GOOD FOOD. GOOD MORNINGS.</span>
+        <p>
+          A fresh start.
+          <br />
+          <span>Every single day.</span>
+        </p>
+        <Link
+          href="/products"
+          className="footer-arrow"
+          aria-label="Explore our dairy"
+        >
+          ↗
+        </Link>
+      </div>
       <div className="wrap footer-grid">
         <div>
-          <p className="footer-brand"><Link href="/" className="brand" aria-label={`${SITE_NAME} home`}><BrandLogo /></Link></p>
-          <p className="footer-note">Fresh milk and dairy from a family business in Gujarat, delivered to your door every morning.</p>
+          <Link href="/" className="brand" aria-label={`${SITE_NAME} home`}>
+            <Image
+              className="brand-mark"
+              src="/logo.png"
+              alt=""
+              width={52}
+              height={52}
+            />
+            <span>ShreeRam Milks</span>
+          </Link>
+          <p className="footer-note">
+            Fresh milk and dairy from a family business in Gujarat. A little
+            care, delivered to your door.
+          </p>
+          <span className="footer-gujarati" lang="gu">
+            તાજું દૂધ, દરરોજ.
+          </span>
         </div>
         <nav aria-label="Pages">
-          <p className="footer-title">Pages</p>
-          <ul>{MAIN_NAV.map(link => <li key={link.href}><Link href={link.href}>{link.label}</Link></li>)}</ul>
+          <p className="footer-title">Explore</p>
+          <ul>
+            {MAIN_NAV.map((link) => (
+              <li key={link.href}>
+                <Link href={link.href}>{link.label}</Link>
+              </li>
+            ))}
+          </ul>
         </nav>
         <nav aria-label="Policies">
-          <p className="footer-title">Policies</p>
-          <ul>{POLICY_NAV.map(link => <li key={link.href}><Link href={link.href}>{link.label}</Link></li>)}</ul>
+          <p className="footer-title">The details</p>
+          <ul>
+            {POLICY_NAV.map((link) => (
+              <li key={link.href}>
+                <Link href={link.href}>{link.label}</Link>
+              </li>
+            ))}
+          </ul>
         </nav>
       </div>
       <div className="wrap">
-        <div className="footer-copy"><span>© {new Date().getFullYear()} {SITE_NAME}. All rights reserved.</span><span>Made with care in Gujarat</span></div>
+        <div className="footer-copy">
+          <span>
+            © {new Date().getFullYear()} {SITE_NAME}. All rights reserved.
+          </span>
+          <span>Rooted in Gujarat. Delivered with care.</span>
+        </div>
       </div>
     </footer>
   )
