@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
 import { MAIN_NAV, SITE_NAME } from '@/lib/site'
+import { ArrowIcon } from './Icons'
 
 export function SiteHeader() {
   const pathname = usePathname()
@@ -124,7 +125,7 @@ export function SiteHeader() {
             >
               {link.label}
               {link.href === '/download' ? (
-                <span aria-hidden="true"> ↗</span>
+                 <ArrowIcon />
               ) : null}
             </Link>
           ))}

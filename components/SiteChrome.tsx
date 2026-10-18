@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { MAIN_NAV, POLICY_NAV, SITE_NAME } from '@/lib/site'
+import { FSSAI_NUMBER, LEGAL_NAME, MAIN_NAV, POLICY_NAV, SITE_NAME } from '@/lib/site'
+import { ArrowIcon } from './Icons'
 export { SiteHeader } from './SiteHeader'
 
 export function SiteFooter() {
@@ -18,7 +19,7 @@ export function SiteFooter() {
           className="footer-arrow"
           aria-label="Explore our dairy"
         >
-          ↗
+          <ArrowIcon />
         </Link>
       </div>
       <div className="wrap footer-grid">
@@ -66,6 +67,10 @@ export function SiteFooter() {
         <div className="footer-copy">
           <span>
             © {new Date().getFullYear()} {SITE_NAME}. All rights reserved.
+          </span>
+          {/* Indian food-safety rules require an online food seller to show its FSSAI registration. */}
+          <span>
+            {LEGAL_NAME} · FSSAI Reg. No. {FSSAI_NUMBER}
           </span>
           <span>Rooted in Gujarat. Delivered with care.</span>
         </div>

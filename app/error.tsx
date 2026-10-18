@@ -1,6 +1,7 @@
 'use client'
 
 import { Button } from '@/components/ui'
+import { ArrowIcon } from '@/components/Icons'
 
 export default function ErrorPage({ reset }: { reset: () => void }) {
   return (
@@ -21,7 +22,7 @@ export default function ErrorPage({ reset }: { reset: () => void }) {
             Try again
           </button>
           <Button href="/" variant="secondary">
-            Back to home ↗
+            Back to home <ArrowIcon />
           </Button>
         </div>
       </div>

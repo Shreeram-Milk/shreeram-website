@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { BusinessJsonLd } from '@/components/BusinessJsonLd'
-import { Icon, type IconName } from '@/components/Icons'
+import { Icon, type IconName, ArrowIcon } from '@/components/Icons'
 import { PlayStoreButton } from '@/components/PlayStoreButton'
 import { PhonePreview } from '@/components/PhonePreview'
 import { ProductTile, RangePreview } from '@/components/DairyCollection'
@@ -109,7 +109,7 @@ export default async function HomePage() {
             ) : null}
             <div className="hero-actions hero-enter">
               <Button href="/products">
-                Explore our dairy <span aria-hidden="true">↗</span>
+                Explore our dairy <ArrowIcon />
               </Button>
               <Button href="/download" variant="secondary">
                 Get the app <Icon name="cart" size={18} />
@@ -144,7 +144,7 @@ export default async function HomePage() {
                   <br />
                   of good mornings.
                 </span>
-                <span aria-hidden="true">↗</span>
+                <ArrowIcon />
               </div>
             </div>
             <div className="fresh-stamp">
@@ -163,7 +163,7 @@ export default async function HomePage() {
         <div className="wrap hero-scroll">
           <a href="#collection">
             <span className="scroll-line" />A little goodness awaits{' '}
-            <span aria-hidden="true">↓</span>
+            <Icon name="arrowDown" size={18} />
           </a>
           <span>FRESH MILK & DAIRY / EVERY DAY</span>
         </div>
@@ -201,7 +201,7 @@ export default async function HomePage() {
                 Bring a little freshness to your table.
               </p>
               <Link href="/products" className="text-link">
-                Explore the collection <span aria-hidden="true">↗</span>
+                Explore the collection <ArrowIcon />
               </Link>
             </div>
           </div>
@@ -290,7 +290,7 @@ export default async function HomePage() {
                   <p>{item.text}</p>
                   {index === 2 ? (
                     <Link href="/about" className="text-link">
-                      Meet ShreeRam Milks <span aria-hidden="true">↗</span>
+                      Meet ShreeRam Milks <ArrowIcon />
                     </Link>
                   ) : (
                     <span className="journey-small">
@@ -343,7 +343,7 @@ export default async function HomePage() {
                   {plan.featured
                     ? 'Build your daily routine'
                     : 'Explore in the app'}
-                  <span aria-hidden="true">↗</span>
+                  <ArrowIcon />
                 </Link>
               </article>
             ))}
@@ -429,7 +429,7 @@ export default async function HomePage() {
           </p>
           <div className="hero-actions">
             <Button href="/download">
-              Discover the app <span aria-hidden="true">↗</span>
+              Discover the app <ArrowIcon />
             </Button>
             <Button href="/contact" variant="secondary">
               Let’s talk

@@ -1,4 +1,5 @@
 import { Button } from '@/components/ui'
+import { ArrowIcon } from '@/components/Icons'
 
 export default function NotFound() {
   return (
@@ -15,7 +16,7 @@ export default function NotFound() {
           at our dairy.
         </p>
         <div className="hero-actions">
-          <Button href="/products">Explore our dairy ↗</Button>
+          <Button href="/products">Explore our dairy <ArrowIcon /></Button>
           <Button href="/" variant="secondary">
             Back to home
           </Button>

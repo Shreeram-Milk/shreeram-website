@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { Icon, type IconName } from '@/components/Icons'
+import { Icon, type IconName, ArrowIcon } from '@/components/Icons'
 import { Button } from '@/components/ui'
 import { pageMetadata } from '@/lib/seo'
 export const metadata = pageMetadata({
@@ -53,7 +53,7 @@ export default function AboutPage() {
             </p>
             <div className="hero-actions">
               <Button href="/products">
-                Meet our dairy <span aria-hidden="true">↗</span>
+                Meet our dairy <ArrowIcon />
               </Button>
             </div>
           </div>
@@ -166,7 +166,7 @@ export default function AboutPage() {
             Explore the dairy. Find your favourites. Make them part of your day.
           </p>
           <div className="hero-actions">
-            <Button href="/products">Explore our dairy ↗</Button>
+            <Button href="/products">Explore our dairy <ArrowIcon /></Button>
             <Button href="/contact" variant="secondary">
               Talk to us
             </Button>

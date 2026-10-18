@@ -1,6 +1,6 @@
 import { JsonLd } from '@/components/JsonLd'
 import { Button, PageHeader } from '@/components/ui'
-import { Icon } from '@/components/Icons'
+import { Icon, ArrowIcon } from '@/components/Icons'
 import { getHelp, type Faq } from '@/lib/content-api'
 import { pageMetadata } from '@/lib/seo'
 import { SITE_URL } from '@/lib/site'
@@ -60,7 +60,7 @@ export default async function HelpPage() {
                 be happy to help.
               </p>
               <Button href="/contact">
-                Let’s talk <span aria-hidden="true">↗</span>
+                Let’s talk <ArrowIcon />
               </Button>
             </div>
           </aside>
@@ -74,7 +74,7 @@ export default async function HelpPage() {
                   while, or contact us.
                 </p>
                 <Button href="/contact" variant="secondary">
-                  Contact support ↗
+                  Contact support <ArrowIcon />
                 </Button>
               </div>
             ) : null}
@@ -85,7 +85,7 @@ export default async function HelpPage() {
                   No questions have been added yet. Please contact us and we
                   will help.
                 </p>
-                <Button href="/contact">Contact us ↗</Button>
+                <Button href="/contact">Contact us <ArrowIcon /></Button>
               </div>
             ) : null}
             {groups.map(({ topic, faqs }) => (

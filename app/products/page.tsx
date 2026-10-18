@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { Catalog } from '@/components/Catalog'
 import { RangePreview } from '@/components/DairyCollection'
-import { Icon } from '@/components/Icons'
+import { Icon, ArrowIcon } from '@/components/Icons'
 import { Button } from '@/components/ui'
 import { getProducts } from '@/lib/content-api'
 import { pageMetadata } from '@/lib/seo'
@@ -48,7 +48,7 @@ export default async function ProductsPage() {
                 dairy range below, or open the app for current availability.
               </p>
               <Button href="/download">
-                Discover the app <span aria-hidden="true">↗</span>
+                Discover the app <ArrowIcon />
               </Button>
             </div>
             <div className="range-fallback">
@@ -66,7 +66,7 @@ export default async function ProductsPage() {
             </p>
           </div>
           <Button href="/download">
-            Order in the app <span aria-hidden="true">↗</span>
+            Order in the app <ArrowIcon />
           </Button>
         </div>
       </div>

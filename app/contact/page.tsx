@@ -2,7 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { BusinessJsonLd } from '@/components/BusinessJsonLd'
 import { PageHeader } from '@/components/ui'
-import { Icon } from '@/components/Icons'
+import { Icon, ArrowIcon } from '@/components/Icons'
 import { getContact } from '@/lib/content-api'
 import { pageMetadata } from '@/lib/seo'
 export const revalidate = 300
@@ -68,7 +68,7 @@ export default async function ContactPage() {
                           : undefined
                       }
                     >
-                      {row.value} <span aria-hidden="true">↗</span>
+                      {row.value} <ArrowIcon />
                     </a>
                   </li>
                 ))}
@@ -82,7 +82,7 @@ export default async function ContactPage() {
                   through the ShreeRam Milks app.
                 </p>
                 <Link href="/download" className="text-link">
-                  Discover the app ↗
+                  Discover the app <ArrowIcon />
                 </Link>
               </div>
             )}
@@ -111,7 +111,7 @@ export default async function ContactPage() {
               like every delivery.
             </p>
             <Link className="text-link" href="/help">
-              Visit the help centre <span aria-hidden="true">↗</span>
+              Visit the help centre <ArrowIcon />
             </Link>
           </aside>
         </div>

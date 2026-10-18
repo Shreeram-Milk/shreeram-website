@@ -1,6 +1,9 @@
 /** The public address of the website; canonical links, the sitemap and structured data all start from it. */
 export const SITE_URL = 'https://shreerammilk.com'
 export const SITE_NAME = 'ShreeRam Milks'
+/** The registered business behind the brand, and its food-safety registration, shown in the footer as Indian rules require. */
+export const LEGAL_NAME = 'Shree Ram Dairy & Farm'
+export const FSSAI_NUMBER = '20726056000759'
 export const API_URL = (process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:4000').replace(/\/$/, '')
 
 /** How long a page may be served before it is rebuilt from the backend. Keeps the backend quiet under traffic. */

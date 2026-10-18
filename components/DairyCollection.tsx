@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import type { ProductCard } from '@/lib/content-api'
+import { ArrowIcon } from './Icons'
 
 export const DAIRY_RANGE = [
   {
@@ -41,7 +42,7 @@ export function RangePreview() {
               sizes="(min-width: 760px) 33vw, 90vw"
             />
             <span className="round-arrow" aria-hidden="true">
-              ↗
+              <ArrowIcon />
             </span>
           </div>
           <div className="range-body">
@@ -49,7 +50,7 @@ export function RangePreview() {
             <h3>{item.name}</h3>
             <p>{item.text}</p>
             <span className="text-link">
-              Explore our dairy <span aria-hidden="true">↗</span>
+              Explore our dairy <ArrowIcon />
             </span>
           </div>
         </Link>
@@ -82,7 +83,7 @@ export function ProductTile({ product }: { product: ProductCard }) {
         )}
         <span className="product-tag">DAIRY ESSENTIAL</span>
         <span className="round-arrow" aria-hidden="true">
-          ↗
+          <ArrowIcon />
         </span>
       </Link>
       <div className="product-body">
@@ -98,7 +99,7 @@ export function ProductTile({ product }: { product: ProductCard }) {
           <p className="price">See options in the app</p>
         )}
         <Link className="text-link" href="/download">
-          Order in the app <span aria-hidden="true">↗</span>
+          Order in the app <ArrowIcon />
         </Link>
       </div>
     </article>
